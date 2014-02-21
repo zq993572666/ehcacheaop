@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
+ default-autowire="no" default-lazy-init="false">
+ 	<bean id="advice" class="com.BeanNameAutoProxy.SimpleAdvice"></bean>
+ 	  <bean id="foobean" class="com.BeanNameAutoProxy.AutoBean"></bean>
+   <bean id="proxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+   <property name="beanNames">
+   <list>
+   <value>foo*</value>
+   </list>
+   </property>
+  
+   <property name="interceptorNames">
+   <list><value>advice</value></list>
+   </property>
+   </bean>
+  
+ 
+  </beans>
+ 

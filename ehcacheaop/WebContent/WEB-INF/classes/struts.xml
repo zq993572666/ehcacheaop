@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<include file="struts-default.xml" />
+	<package name="book" extends="struts-default" >
+	
+	<!-- 添加图书信息 -->
+		<action name="addSBook" class="com.dou.book.action.SBookAction" method="addSBook">
+			<result name="success">/success.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 查看全部图书信息 -->
+		<action name="viewSBook" class="com.dou.book.action.SBookAction" method="viewSBook">
+			<result name="success" >/viewBook.jsp</result>
+			<result name="error">/viewBook.jsp</result>
+		</action>
+		<!-- 删除图书信息 -->
+		<action name="removeSBook" class="com.dou.book.action.SBookAction" method="removeSBook">
+			<result name="success" type="redirectAction">/viewSBook.action</result>
+			<result name="error" type="redirectAction">/viewSBook.action</result>
+		</action>
+		<action name="findById" class="com.dou.book.action.SBookAction" method="modifySBook">
+			<result name="success">/updateBook.jsp</result>
+			<result name="error" type="redirectAction">/viewSBook.action</result>
+		</action>
+		<action name="updateSBook" class="com.dou.book.action.SBookAction" method="updateSBook">
+			<result name="success" type="redirectAction">/viewSBook.action</result>
+			<result name="error" type="redirectAction">/viewSBook.action</result>
+		</action>
+	</package>
+
+</struts>

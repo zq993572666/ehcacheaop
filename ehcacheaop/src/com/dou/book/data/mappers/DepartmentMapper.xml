@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+  
+<!-- 此处namespace需要指定dao接口 -->  
+<mapper namespace="com.dou.book.data.mappers.DepartmentMapper">  
+  
+    <!--  property 关联属性 Employer 关联对象的类 -->  
+    <resultMap id="departMentResult" type="com.dou.book.data.pojo.Department">  
+        <id column="dp_id" property="dp_id" />  
+        <result column="dp_name" property="dp_name" />  
+        <result column="cost_center" property="cost_center" />  
+        <collection property="employerList" ofType="com.dou.book.data.pojo.Employer"  
+                    resultMap="com.dou.book.data.mappers.EmployerMapper.employerResult" /> <!--注意此处引用的方式 -->  
+    </resultMap>  
+  
+    <select id="queryByDpName" resultMap="departMentResult" parameterType="java.lang.String">  
+          select  *  
+          from t_employer e inner join t_department t  
+          on e.dp_id = t.dp_id  
+          where t.dp_name = #{dp_name}  
+    </select>  
+  
+</mapper>  
