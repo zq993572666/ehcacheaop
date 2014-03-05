@@ -25,6 +25,9 @@
               <!--属性setter-->
                 <ref local="methodCache"/>  
             </property>  
+             <constructor-arg index="0">  
+            	<ref bean="methodCache"/>  
+       		 </constructor-arg>  
         </bean>  
         
         <bean id="afterPrinter" class="Advisor.AfterPrinter">  
