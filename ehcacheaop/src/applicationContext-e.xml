@@ -14,17 +14,14 @@
             
         </bean>  
       	
-        <bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">  
+        <bean id="methodCache" class="org.springframework.cache.ehcache.EhCacheCacheManager">  
             <property name="cacheManager">  
                 <ref local="cacheManager"/>  
-            </property>  
-            <property name="cacheName">  
-                <value>com.rmn190.MethodCache</value>  
             </property>  
         </bean>  
         <!--  自定义方法拦截器-->
         <bean id="methodCacheInterceptor" class="com.ehcache.MethodCacheInterceptor">  
-            <property name="cache"> 
+            <property name="methodCache"> 
               <!--属性setter-->
                 <ref local="methodCache"/>  
             </property>  
