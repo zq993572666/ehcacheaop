@@ -19,6 +19,7 @@ public class JacksonTest {
 
     private ObjectMapper objectMapper = null;
 
+    private AccountBean bean = null;
 
     @Before
 
@@ -74,6 +75,7 @@ public class JacksonTest {
 
             objectMapper = null;
 
+            bean = null;
 
             System.gc();
 
@@ -94,6 +96,7 @@ public class JacksonTest {
 
             //writeObject可以转换java对象，eg:JavaBean/Map/List/Array等
 
+            jsonGenerator.writeObject(bean);    
 
             System.out.println();
 
