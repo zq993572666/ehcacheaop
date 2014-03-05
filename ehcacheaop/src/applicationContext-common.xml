@@ -38,6 +38,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<!-- Mapper接口所在包名，basePackage 属性是让你为映射器接口文件设置基本的包路径。 -->
 		<property name="basePackage" value="com.dou.book.data.mappers" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>

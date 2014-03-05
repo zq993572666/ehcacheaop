@@ -3,7 +3,9 @@ package test;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-
+/**
+ * 不依赖spring,自己创建ehcache测试
+ * */
 public class TestEchache {
 	public static void main(String[] args) {
 
@@ -27,7 +29,7 @@ public class TestEchache {
 
 		Element element = cache.get("key1");
 
-		System.out.println("element" +element.getValue());
+		System.out.println("element   " +element.getObjectKey());
 
 		String[] names1 = manager.getCacheNames();
 

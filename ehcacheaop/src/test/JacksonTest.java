@@ -10,14 +10,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 @SuppressWarnings("unchecked")
-
+/**
+ * java json工具类
+ * */
 public class JacksonTest {
 
     private JsonGenerator jsonGenerator = null;
 
     private ObjectMapper objectMapper = null;
 
-    private AccountBean bean = null;
 
     @Before
 
@@ -73,7 +74,6 @@ public class JacksonTest {
 
             objectMapper = null;
 
-            bean = null;
 
             System.gc();
 
@@ -94,7 +94,6 @@ public class JacksonTest {
 
             //writeObject可以转换java对象，eg:JavaBean/Map/List/Array等
 
-            jsonGenerator.writeObject(bean);    
 
             System.out.println();
 

@@ -7,20 +7,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 @Component
 public class PersonManagerImpl {
-	  private static List persons;  
+	  private  List<String> persons=new ArrayList<String>();  
 	  
 	    static {  
-	        persons = new ArrayList();  
-	          
+	       
+	    }  
+	      
+	    public List getList(String p1,int int1) {  
+	        System.out.println("getPerons from DB");  
 	        persons.add("Wang");  
 	        persons.add("zang");  
 	        persons.add("Li");  
 	        persons.add("song");  
 	        persons.add("yan");  
-	    }  
-	      
-	    public List getList(String p1,int int1) {  
-	        System.out.println("getPerons from DB");  
 	        return persons;  
 	    }  
 	      

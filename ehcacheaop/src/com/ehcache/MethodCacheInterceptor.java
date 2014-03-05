@@ -19,7 +19,7 @@ public class MethodCacheInterceptor implements MethodInterceptor, InitializingBe
     /* 
      * 首先有一点要明白的是：invoke的触发都在由于DAO或sevlet的数据访问时才会调用到 
      */  
-    //invoke方法会在spring配置文件里的，指明的cache拦截的方法的调用时，自动触发它，如这个项目里，当运行HelloEhcacheSpring.java类时，在showPersonsInfo方法里调用到personManager.getList()方法时，它就会先调到这里来执行，执行完才行下执行它的业务  
+    //invoke方法会在spring配置文件里的，指明的cache拦截的方法的调用时，自动触发它，如这个项目里，当运行TestSpringAopEhcache.java类时，在showPersonsInfo方法里调用到personManager.getList()方法时，它就会先调到这里来执行，执行完才行下执行它的业务  
     public Object invoke(MethodInvocation invocation) throws Throwable {  
         String targetName = invocation.getThis().getClass().getName();//这个表示哪个类调用（或触发）了这个MethodCacheInterceptor，如里的:manager.PersonMagagerImpl  
         String methodName = invocation.getMethod().getName();//这个表示哪个方法触发了这个类（MethodCacheInterceptor）方法（invoke）的调用，如这里的:getList  
@@ -41,7 +41,7 @@ public class MethodCacheInterceptor implements MethodInterceptor, InitializingBe
             cache.put(element);//放入cache中  
         }  
         System.out.println("out cache");//完成cache操作  
-        return element.getValue();  
+        return element.getObjectValue();  
     }  
   
       

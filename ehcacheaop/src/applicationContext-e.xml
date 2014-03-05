@@ -22,19 +22,23 @@
                 <value>com.rmn190.MethodCache</value>  
             </property>  
         </bean>  
-        <bean id="methodCacheInterceptor" class="ehcache.MethodCacheInterceptor">  
-            <property name="cache">  
+        <!--  自定义方法拦截器-->
+        <bean id="methodCacheInterceptor" class="com.ehcache.MethodCacheInterceptor">  
+            <property name="cache"> 
+              <!--属性setter-->
                 <ref local="methodCache"/>  
             </property>  
         </bean>  
+        
         <bean id="afterPrinter" class="Advisor.AfterPrinter">  
+        <!--属性setter-->
             <property name="cache">  
                 <ref local="methodCache"/>  
             </property>  
         </bean>  
         <bean id="methodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
             <property name="advice">  
-                <ref local="afterPrinter"/>  
+                <ref local="methodCacheInterceptor"/>  
             </property>  
             <!-- 下面的配置就使得在数据访问时，cache将拦截从数据库获取的数据，与cache数据比较，如有就不放入cache，没有就放入，更新到数据库去，也是先存入cache，再更新到数据库中去 -->  
             <property name="patterns">  
@@ -43,23 +47,14 @@
                 </list>  
             </property>  
         </bean>  
-      
+      <!--  拦截代理类-->
         <bean  id = "personManager" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <!--  拦截目标-->
             <property name="target">  
                 <!--<bean class="manager.PersonManagerImpl"/>-->  
                 <ref local="personManagerTarget"/>  
             </property>  
-            <property name="interceptorNames">  
-                <list>  
-                    <value>methodCachePointCut</value>  
-                </list>  
-            </property>  
-        </bean>  
-        <bean  id = "personManager" class="org.springframework.aop.framework.ProxyFactoryBean">  
-            <property name="target">  
-                <!--<bean class="manager.PersonManagerImpl"/>-->  
-                <ref local="personManagerTarget"/>  
-            </property>  
+            <!--  拦截器名 多个以逗号分开-->
             <property name="interceptorNames">  
                 <list>  
                     <value>methodCachePointCut</value>  

@@ -5,9 +5,11 @@
  default-autowire="no" default-lazy-init="false">
  	<bean id="advice" class="com.BeanNameAutoProxy.SimpleAdvice"></bean>
  	  <bean id="foobean" class="com.BeanNameAutoProxy.AutoBean"></bean>
+ 	  <!-- bean拦截器 -->
    <bean id="proxyCreator" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
    <property name="beanNames">
    <list>
+    <!-- 拦截以foo开头的器 -->
    <value>foo*</value>
    </list>
    </property>
